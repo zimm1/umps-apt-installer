@@ -13,6 +13,22 @@ Install [umps](https://github.com/tjonjic/umps) using apt
   ```
   sudo ./installUmps.sh
   ```
+  
+#### Known issues
+
+In case the installation fails with the error:
+```
+configure: error: cannot find Boost headers version >= 1.34.0
+```
+- Upgrade the system as **root**:
+```
+(sudo) apt update && apt upgrade -y
+```
+- Fix `gearman-job-server` packages:
+```
+(sudo) apt build-dep gearman-job-server
+```
+- Reboot the system
 
 ## Running umps
 
@@ -41,18 +57,3 @@ In order to compile and run the example in `/examples/hello-umps/`:
   ```
   make -f Makefile-templ
   ```
-  
-### Possible issue
-
-If running the installation during the "configure" process appear the error:
-"configure: error: cannot find Boost headers version >= 1.34.0"
-
-With root permission lunch:
-':~# apt update && apt upgrade -y'
-//for upgrade the system
-
-and then:
-':~# apt build-dep gearman-job-server'
-// you may need restart the system
-
-Try again the installation with 'installUmps.sh'
